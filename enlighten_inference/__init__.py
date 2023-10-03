@@ -12,7 +12,8 @@ def get_relative_path(root, *args):
 class EnlightenOnnxModel:
     def __init__(self, model: Union[bytes, str, None] = None):
         self.graph = InferenceSession(model or get_relative_path(__file__, 'enlighten.onnx'), 
-                                      providers=["TensorrtExecutionProvider", 'CPUExecutionProvider'])
+                                      providers=['CUDAExecutionProvider',
+ 'AzureExecutionProvider', "TensorrtExecutionProvider", 'CPUExecutionProvider'])
 
     def __repr__(self):
         return f'<EnlightenGAN OnnxModel {id(self)}>'
